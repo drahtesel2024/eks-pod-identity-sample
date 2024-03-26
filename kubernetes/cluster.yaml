@@ -1,0 +1,25 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+availabilityZones:
+  - eu-west-1a
+  - eu-west-1b
+  - eu-west-1c
+metadata:
+  name: eks-sample
+  region: eu-west-1
+  version: '1.29'
+  tags:
+    project: eks-sample
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+      attachPolicyARNs:
+        - arn:aws:iam::803033771544:policy/AWSLoadBalancerControllerIAMPolicy
+managedNodeGroups:
+  - name: default
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 2
+    instanceType: m5.large

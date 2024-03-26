@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates the appropriate policy and role for the EKS Pod Identity
+Resources:
+  EKSPodIdentityRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - pods.eks.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+              - "sts:TagSession"
+  DynamoDBGetPolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties: 
+      PolicyName: "DELETEMEPermissivePolicy"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "dynamodb:GetItem"
+            Resource: "*"
+      Roles:
+        - !Ref EKSPodIdentityRole
+Outputs:
+  TheRole:
+    Value: !GetAtt EKSPodIdentityRole.Arn
+    Description: ARN for the newly created role.
