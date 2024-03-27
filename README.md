@@ -15,7 +15,7 @@ Access to an AWS account with full priveliges. Note that following these instruc
 
 # What will the final setup look like?
 
-![Architecture diagram](/eks-pod-identity-sample/documentation/arch-eks-sample.png)
+![Architecture diagram](/documentation/arch-eks-sample.png)
 By deploying this setup in your AWS account, you will be able to access a web server through a load balancer. By calling the load balancer endpoint, you should be able to retrieve a value stored in DynamoDB. The web server will retrieve the object from DynamoDB using permissions granted through EKS Pod Identity. 
 
 # Instrutions
@@ -101,7 +101,7 @@ aws cloudformation deploy \
 
 Add one item to the DynamoDB table manually. This can be done from the management console. Give it the partition key (pk), "key", and add a string attribute with the name "value". Have the value of this attribute be "hello world!". See the screenshot below for reference.
 
-!["dynamodb add item"](/eks-pod-identity-sample/documentation/dynamodb-add-item.png)
+!["dynamodb add item"](/documentation/dynamodb-add-item.png)
 
 ### 11. Update the `deployment.yaml` file.
 
