@@ -190,7 +190,7 @@ kubectl get deployment -n eks-sample
 If something gets messed up by accident, the deployment can be deleted using:
 
 ```
-kubectl delete deployment -n eks-sample sample-deployment
+kubectl delete deployment -n eks-sample sample-web-server
 ```
 
 We can verify that the pods deployed with the correct association to the service account by:
@@ -249,8 +249,7 @@ Check the association. If you recreated the IAM role, the assocation might still
 If you want to delete everything you've deployed following these instructions, use the following:
 
 ```
-kubectl delete serviceaccount -n eks-sample sample-service-account
-kubectl delete deployment -n eks-sample sample-deployment
+kubectl delete deployment -n eks-sample sample-web-server
 kubectl delete service -n eks-sample sample-service
 kubectl delete ingress -n eks-sample sample-ingress
 kubectl delete pod -n eks-sample pod-with-aws-access
